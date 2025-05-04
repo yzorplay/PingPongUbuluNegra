@@ -39,32 +39,40 @@ class Boll():
         draw.rect(window, (0, 0, 255), self.rect)
     def move(self):
         global p1s, p2s, final
-        if self.y == 0 or self.y == 480:
+        if self.y <= 0 or self.y >= 480:
             self.my *= -1
         
         if self.x >= pl2.x - 20 and self.y >= pl2.y and self.y <= pl2.y + pl2.sy:
             self.mx *= -1
+            self.mx *= 1.6
+            self.my *= 1.6
         elif self.x <= pl.x + 20 and self.y >= pl.y and self.y <= pl.y + pl.sy:
             self.mx *= -1
+            self.mx *= 1.6
+            self.my *= 1.6
 
         if self.x >= pl2.x + 30:
             p1s += 1
             b.x = 350
             b.y = 250
             b.mx *= -1
+            self.mx = 2
+            self.my = -2
         elif self.x <= pl.x - 30:
             p2s += 1
             b.x = 350
             b.y = 250
             b.mx *= -1
+            self.mx = 2
+            self.my = -2
         
-        if p1s == 3:
-            winer = "слева"
-            luser = "справо"
-            final = True
-        elif p2s == 3:
+        if p1s == 10:
             winer = "справо"
-            luser = "слево"
+            luser = "слева"
+            final = True
+        elif p2s == 10:
+            winer = "слево"
+            luser = "справо"
             final = True
 
 
